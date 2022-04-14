@@ -1,25 +1,27 @@
-#ifndef EDGE_h
-#define EDGE_h
+#ifndef Button_h
+#define Button_h
 
 #include <Arduino.h>
 
-class Edge{
+class Button{
     public:
-        Edge(int pin, unsigned long snubberT);
-        Edge(int pin);
+        Button(int pin, int mode, unsigned long snubberT);
+        Button(int pin, int mode);
         int getPin();
-        void inputMode(int);
         unsigned long getSnubberT();
         void setSnubberT(unsigned long snubberT);
         bool readRising();
         bool readFalling();
+        bool readEdge();
+        bool readLow();
+        bool readHigh();
 
     private:
         int _pin;
         int _oldState;
         unsigned long _prevoiusMillis;
         unsigned long _snubberT;
-        void _init(int pin, unsigned long snubberT);
+        void _init(int pin, int mode, unsigned long snubberT);
 };
 
 #endif
