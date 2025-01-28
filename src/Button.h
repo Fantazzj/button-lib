@@ -3,25 +3,26 @@
 
 #include <Arduino.h>
 
-class Button{
-    public:
-        Button(int pin, int mode, unsigned long snubberT);
-        Button(int pin, int mode);
-        int getPin();
-        unsigned long getSnubberT();
-        void setSnubberT(unsigned long snubberT);
-        bool readRising();
-        bool readFalling();
-        bool readEdge();
-        bool readLow();
-        bool readHigh();
+class Button
+{
+public:
+    Button(int8_t pin, uint32_t snubberT);
+    Button(int8_t pin);
+    void begin(int8_t mode);
+    int8_t getPin();
+    uint32_t getSnubberT();
+    void setSnubberT(uint32_t snubberT);
+    bool readRising();
+    bool readFalling();
+    bool readEdge();
+    bool readLow();
+    bool readHigh();
 
-    private:
-        int _pin;
-        int _oldState;
-        unsigned long _prevoiusMillis;
-        unsigned long _snubberT;
-        void _init(int pin, int mode, unsigned long snubberT);
+private:
+    int8_t _pin;
+    bool _oldState;
+    uint32_t _prevoiusMillis;
+    uint32_t _snubberT;
 };
 
 #endif
